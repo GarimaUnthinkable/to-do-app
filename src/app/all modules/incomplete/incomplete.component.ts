@@ -9,6 +9,7 @@ import { TaskUpdateComponent } from '../task-update/task-update.component';
 })
 export class IncompleteComponent {
   task_list: any;
+  list_length: any;
 
   constructor(public dialog: MatDialog) {}
 
@@ -20,6 +21,7 @@ export class IncompleteComponent {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
     let task = tasks.filter((item: any) => item.status == false);
     this.task_list = task;
+    this.list_length = this.task_list.length;
   }
 
   openDialog(id: any) {

@@ -16,11 +16,9 @@ export class AllTasksComponent {
   task: any;
   task_details: any = {};
   task_status: any = false;
-  filter: any = false;
-
+  list_length: any;
   ngOnInit(): void {
     this.all_data();
-    this.filter = false;
   }
 
   constructor(public dialog: MatDialog) {}
@@ -30,6 +28,7 @@ export class AllTasksComponent {
       return;
     } else {
       this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+      this.list_length = this.task_list.length;
     }
   }
 

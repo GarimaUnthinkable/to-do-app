@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class CompletedComponent {
   task_list: any;
+  list_length: any;
 
   ngOnInit(): void {
     this.completed_tasks();
@@ -16,6 +17,8 @@ export class CompletedComponent {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
     let task = tasks.filter((item: any) => item.status == true);
     this.task_list = task;
+    this.list_length = this.task_list.length;
+    console.log(this.list_length);
   }
 
   remove(id: any) {
