@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { taskDetails } from '../app.component';
+import { taskDetails } from '../../app.component';
 
 @Component({
   selector: 'app-task-update',

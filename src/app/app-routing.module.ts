@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllTasksComponent } from './all-tasks/all-tasks.component';
-import { CompletedComponent } from './completed/completed.component';
-import { IncompleteComponent } from './incomplete/incomplete.component';
+import { AllTasksComponent } from './all modules/all-tasks/all-tasks.component';
+import { CompletedComponent } from './all modules/completed/completed.component';
+import { IncompleteComponent } from './all modules/incomplete/incomplete.component';
 
 const routes: Routes = [
   { path: '', component: AllTasksComponent },
