@@ -12,6 +12,7 @@ export interface taskDetails {
   styleUrls: ['./all-tasks.component.css'],
 })
 export class AllTasksComponent {
+  tasks = JSON.parse(localStorage.getItem('task-details')!);
   task_list: any = [];
   task: any;
   task_details: any = {};
@@ -27,7 +28,7 @@ export class AllTasksComponent {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
-      this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+      this.task_list = this.tasks;
       this.list_length = this.task_list.length;
     }
   }
@@ -42,17 +43,17 @@ export class AllTasksComponent {
     this.task_list.push(this.task_details);
     let list = JSON.stringify(this.task_list);
     localStorage.setItem('task-details', list);
-    this.task_list = JSON.parse(localStorage.getItem('task-details')!);
-    return (this.task = '');
+    this.task = '';
+    this.task_list = this.tasks;
   }
 
   update_status(id: any) {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
+    let tasks = this.tasks;
     let task = tasks.find((item: any) => item.id == id);
     task.status = true;
     let list = JSON.stringify(tasks);
     localStorage.setItem('task-details', list);
-    this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+    this.task_list = this.tasks;
   }
 
   open_dialog(id: any) {
@@ -61,17 +62,16 @@ export class AllTasksComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+      this.task_list = this.tasks;
     });
   }
 
   remove_todo(id: any) {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    let task = tasks.find((item: any) => item.id == id);
-    let index = tasks.indexOf(task);
-    let updated_list = tasks.splice(index, 1);
-    let list = JSON.stringify(tasks);
+    let task = this.tasks.find((item: any) => item.id == id);
+    let index = this.tasks.indexOf(task);
+    let updated_list = this.tasks.splice(index, 1);
+    let list = JSON.stringify(this.tasks);
     localStorage.setItem('task-details', list);
-    this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+    this.task_list = this.tasks;
   }
 }
