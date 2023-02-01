@@ -17,11 +17,20 @@ export class AppComponent {
   filter: any = false;
 
   ngOnInit(): void {
-    this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+    this.all_data();
     this.filter = false;
   }
 
   constructor(public dialog: MatDialog, public router: Router) {}
+
+  all_data() {
+    if (localStorage.getItem('task-details') == null) {
+      return;
+    } else {
+      this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+    }
+  }
+
   onSubmit() {
     let task_id = Math.floor(Math.random() * 1000);
     this.task_details = {
