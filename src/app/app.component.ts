@@ -72,16 +72,4 @@ export class AppComponent {
     this.task_list = task;
     return (this.filter = true);
   }
-  // filter_list() {
-  //   let tasks = JSON.parse(localStorage.getItem('task-details')!);
-  //   if (!this.filter_text) {
-  //     console.log(tasks);
-  //     return tasks;
-  //   } else {
-  //     let filter = tasks.filter((task: any) => {
-  //       task.status == this.filter_text;
-  //     });
-  //     console.log(filter);
-  //   }
-  // }
 }

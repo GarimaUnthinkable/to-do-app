@@ -28,8 +28,6 @@ export class TaskUpdateComponent {
     this.route.queryParams.subscribe((res: any) => {
       let task = tasks.find((item: any) => item.id == res.id);
       task.name = this.task_name;
-      console.log(task);
-      console.log(tasks);
       let list = JSON.stringify(tasks);
       localStorage.setItem('task-details', list);
     });
