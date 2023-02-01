@@ -8,5 +8,7 @@ div {
 }
 
 .card {
-  height: 60px;
+  height: 65px;
+  background-color: black;
+  border-color: aquamarine;
 }
