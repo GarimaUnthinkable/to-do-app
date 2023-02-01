@@ -8,9 +8,9 @@ import { TaskUpdateComponent } from '../task-update/task-update.component';
   styleUrls: ['./incomplete.component.css'],
 })
 export class IncompleteComponent {
-  task_list: any;
-  list_length: any;
-  tasks = JSON.parse(localStorage.getItem('task-details')!);
+  todo_task_list: any;
+  todo_task_list_length: any;
+  todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -18,9 +18,9 @@ export class IncompleteComponent {
   }
 
   inCompleted_tasks() {
-    let task = this.tasks.filter((item: any) => item.status == false);
-    this.task_list = task;
-    this.list_length = this.task_list.length;
+    let task = this.todo_tasks.filter((item: any) => item.status == false);
+    this.todo_task_list = task;
+    this.todo_task_list_length = this.todo_task_list.length;
   }
 
   open_dialog(id: any) {
@@ -34,7 +34,7 @@ export class IncompleteComponent {
   }
 
   store_updated_todo() {
-    let list = JSON.stringify(this.task_list);
+    let list = JSON.stringify(this.todo_task_list);
     localStorage.setItem('task-details', list);
   }
 
@@ -42,9 +42,9 @@ export class IncompleteComponent {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
-      let task = this.tasks.find((item: any) => item.id == id);
-      let index = this.tasks.indexOf(task);
-      let updated_list = this.tasks.splice(index, 1);
+      let task = this.todo_tasks.find((item: any) => item.id == id);
+      let index = this.todo_tasks.indexOf(task);
+      let updated_list = this.todo_tasks.splice(index, 1);
       this.store_updated_todo();
     }
     this.inCompleted_tasks();
@@ -54,7 +54,7 @@ export class IncompleteComponent {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
-      let task = this.tasks.find((item: any) => item.id == id);
+      let task = this.todo_tasks.find((item: any) => item.id == id);
       task.status = true;
       this.store_updated_todo();
     }

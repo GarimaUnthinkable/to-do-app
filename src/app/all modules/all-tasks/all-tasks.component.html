@@ -5,13 +5,13 @@
       required
       minlength="100"
       style="border-radius: 30px; width: 50%; height: 50px"
-      [(ngModel)]="task"
+      [(ngModel)]="todo_task"
       name="task"
       class="form-control me-2"
       placeholder="What's your today's task?"
     />
     <button
-      [disabled]="!task"
+      [disabled]="!todo_task"
       class="btn btn-info btn-lg"
       type="submit"
       style="background-color: black; color: white; border-radius: 30px"
@@ -57,10 +57,10 @@
       </div>
     </div>
   </div>
-  <div *ngIf="list_length == 0">
+  <div *ngIf="todo_task_list_length == 0">
     <h2>No tasks created.</h2>
   </div>
-  <div class="card" *ngFor="let task of task_list; let i = index">
+  <div class="card" *ngFor="let task of todo_task_list; let i = index">
     <p class="card-body" style="color: white">
       <b>{{ i + 1 }}.</b>
       <span style="font-size: 18px"> {{ task.name }}</span>

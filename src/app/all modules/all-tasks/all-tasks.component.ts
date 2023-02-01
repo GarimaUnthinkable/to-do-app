@@ -12,12 +12,12 @@ export interface taskDetails {
   styleUrls: ['./all-tasks.component.css'],
 })
 export class AllTasksComponent {
-  tasks = JSON.parse(localStorage.getItem('task-details')!);
-  task_list: any = [];
-  task: any;
-  task_details: any = {};
-  task_status: any = false;
-  list_length: any;
+  all_todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
+  todo_task_list: any = [];
+  todo_task: any;
+  todo_task_details: any = {};
+  todo_task_status: any = false;
+  todo_task_list_length: any;
   ngOnInit(): void {
     this.fetch_all_todo();
   }
@@ -28,35 +28,34 @@ export class AllTasksComponent {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
-      this.task_list = this.tasks;
-      this.list_length = this.task_list.length;
+      this.todo_task_list = this.all_todo_tasks;
+      this.todo_task_list_length = this.todo_task_list.length;
     }
   }
 
   store_updated_todo() {
-    let list = JSON.stringify(this.task_list);
+    let list = JSON.stringify(this.todo_task_list);
     localStorage.setItem('task-details', list);
   }
 
   add_todo() {
-    let task_id = Math.floor(Math.random() * 1000);
-    this.task_details = {
-      name: this.task,
-      status: this.task_status,
-      id: task_id,
+    let todo_task_id = Math.floor(Math.random() * 1000);
+    this.todo_task_details = {
+      name: this.todo_task,
+      status: this.todo_task_status,
+      id: todo_task_id,
     };
-    this.task_list.push(this.task_details);
+    this.todo_task_list.push(this.todo_task_details);
     this.store_updated_todo();
-    this.task = '';
-    this.task_list = this.tasks;
+    this.todo_task = '';
+    this.todo_task_list = this.all_todo_tasks;
   }
 
   update_status(id: any) {
-    let tasks = this.tasks;
-    let task = tasks.find((item: any) => item.id == id);
-    task.status = true;
+    let todo_task = this.all_todo_tasks.find((item: any) => item.id == id);
+    todo_task.status = true;
     this.store_updated_todo();
-    this.task_list = this.tasks;
+    this.todo_task_list = this.all_todo_tasks;
   }
 
   open_dialog(id: any) {
@@ -65,15 +64,15 @@ export class AllTasksComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.task_list = this.tasks;
+      this.todo_task_list = this.all_todo_tasks;
     });
   }
 
   remove_todo(id: any) {
-    let task = this.tasks.find((item: any) => item.id == id);
-    let index = this.tasks.indexOf(task);
-    let updated_list = this.tasks.splice(index, 1);
+    let todo_task = this.all_todo_tasks.find((item: any) => item.id == id);
+    let index = this.all_todo_tasks.indexOf(todo_task);
+    let updated_list = this.all_todo_tasks.splice(index, 1);
     this.store_updated_todo();
-    this.task_list = this.tasks;
+    this.todo_task_list = this.all_todo_tasks;
   }
 }

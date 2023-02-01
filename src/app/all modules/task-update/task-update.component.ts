@@ -15,21 +15,21 @@ export class TaskUpdateComponent {
     @Inject(MAT_DIALOG_DATA) public data: taskDetails
   ) {}
 
+  todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
+
   ngOnInit(): void {
     this.fetch_previous_name();
   }
 
   fetch_previous_name() {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    let task = tasks.find((item: any) => item.id == this.data.id);
+    let task = this.todo_tasks.find((item: any) => item.id == this.data.id);
     this.task_name = task.name;
   }
 
   update_todo() {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    let task = tasks.find((item: any) => item.id == this.data.id);
+    let task = this.todo_tasks.find((item: any) => item.id == this.data.id);
     task.name = this.task_name;
-    let list = JSON.stringify(tasks);
+    let list = JSON.stringify(this.todo_tasks);
     localStorage.setItem('task-details', list);
   }
 }
