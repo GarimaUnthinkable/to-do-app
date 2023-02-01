@@ -41,6 +41,7 @@ export class AppComponent {
     task.status = true;
     let list = JSON.stringify(tasks);
     localStorage.setItem('task-details', list);
+    this.task_list = JSON.parse(localStorage.getItem('task-details')!);
   }
 
   openDialog(id: any) {
