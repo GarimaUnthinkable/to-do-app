@@ -33,6 +33,11 @@ export class IncompleteComponent {
     });
   }
 
+  store_updated_todo() {
+    let list = JSON.stringify(this.task_list);
+    localStorage.setItem('task-details', list);
+  }
+
   remove_todo(id: any) {
     if (localStorage.getItem('task-details') == null) {
       return;
@@ -40,19 +45,18 @@ export class IncompleteComponent {
       let task = this.tasks.find((item: any) => item.id == id);
       let index = this.tasks.indexOf(task);
       let updated_list = this.tasks.splice(index, 1);
-      let list = JSON.stringify(this.tasks);
-      localStorage.setItem('task-details', list);
+      this.store_updated_todo();
     }
     this.inCompleted_tasks();
   }
+
   update_status(id: any) {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
       let task = this.tasks.find((item: any) => item.id == id);
       task.status = true;
-      let list = JSON.stringify(this.tasks);
-      localStorage.setItem('task-details', list);
+      this.store_updated_todo();
     }
     this.inCompleted_tasks();
   }

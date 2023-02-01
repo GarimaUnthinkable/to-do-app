@@ -33,6 +33,11 @@ export class AllTasksComponent {
     }
   }
 
+  store_updated_todo() {
+    let list = JSON.stringify(this.task_list);
+    localStorage.setItem('task-details', list);
+  }
+
   add_todo() {
     let task_id = Math.floor(Math.random() * 1000);
     this.task_details = {
@@ -41,8 +46,7 @@ export class AllTasksComponent {
       id: task_id,
     };
     this.task_list.push(this.task_details);
-    let list = JSON.stringify(this.task_list);
-    localStorage.setItem('task-details', list);
+    this.store_updated_todo();
     this.task = '';
     this.task_list = this.tasks;
   }
@@ -51,8 +55,7 @@ export class AllTasksComponent {
     let tasks = this.tasks;
     let task = tasks.find((item: any) => item.id == id);
     task.status = true;
-    let list = JSON.stringify(tasks);
-    localStorage.setItem('task-details', list);
+    this.store_updated_todo();
     this.task_list = this.tasks;
   }
 
@@ -70,8 +73,7 @@ export class AllTasksComponent {
     let task = this.tasks.find((item: any) => item.id == id);
     let index = this.tasks.indexOf(task);
     let updated_list = this.tasks.splice(index, 1);
-    let list = JSON.stringify(this.tasks);
-    localStorage.setItem('task-details', list);
+    this.store_updated_todo();
     this.task_list = this.tasks;
   }
 }
