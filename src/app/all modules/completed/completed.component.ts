@@ -21,7 +21,7 @@ export class CompletedComponent {
     console.log(this.list_length);
   }
 
-  remove(id: any) {
+  remove_todo(id: any) {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {

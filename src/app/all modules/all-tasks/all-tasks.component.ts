@@ -18,12 +18,12 @@ export class AllTasksComponent {
   task_status: any = false;
   list_length: any;
   ngOnInit(): void {
-    this.all_data();
+    this.fetch_all_todo();
   }
 
   constructor(public dialog: MatDialog) {}
 
-  all_data() {
+  fetch_all_todo() {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
@@ -32,7 +32,7 @@ export class AllTasksComponent {
     }
   }
 
-  onSubmit() {
+  add_todo() {
     let task_id = Math.floor(Math.random() * 1000);
     this.task_details = {
       name: this.task,
@@ -46,7 +46,7 @@ export class AllTasksComponent {
     return (this.task = '');
   }
 
-  status(id: any) {
+  update_status(id: any) {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
     let task = tasks.find((item: any) => item.id == id);
     task.status = true;
@@ -55,7 +55,7 @@ export class AllTasksComponent {
     this.task_list = JSON.parse(localStorage.getItem('task-details')!);
   }
 
-  openDialog(id: any) {
+  open_dialog(id: any) {
     const dialogRef = this.dialog.open(TaskUpdateComponent, {
       data: { id: id },
     });
@@ -65,7 +65,7 @@ export class AllTasksComponent {
     });
   }
 
-  remove(id: any) {
+  remove_todo(id: any) {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
     let task = tasks.find((item: any) => item.id == id);
     let index = tasks.indexOf(task);

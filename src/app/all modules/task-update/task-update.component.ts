@@ -16,16 +16,16 @@ export class TaskUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    this.previous_name();
+    this.fetch_previous_name();
   }
 
-  previous_name() {
+  fetch_previous_name() {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
     let task = tasks.find((item: any) => item.id == this.data.id);
     this.task_name = task.name;
   }
 
-  update() {
+  update_todo() {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
     let task = tasks.find((item: any) => item.id == this.data.id);
     task.name = this.task_name;

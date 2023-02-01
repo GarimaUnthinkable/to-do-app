@@ -30,7 +30,7 @@
       >
         Incomplete
         <input
-          (click)="status(task.id)"
+          (click)="update_status(task.id)"
           *ngIf="task.status == false"
           type="checkbox"
           style="
@@ -44,7 +44,7 @@
         <button
           mat-raised-button
           *ngIf="task.status == false"
-          (click)="openDialog(task.id)"
+          (click)="open_dialog(task.id)"
           style="
             background-color: rgb(47, 123, 170);
             color: rgb(146, 215, 210);
@@ -56,7 +56,7 @@
         <button
           *ngIf="task.status == false"
           mat-raised-button
-          (click)="remove(task.id)"
+          (click)="remove_todo(task.id)"
           style="
             background-color: red;
             color: white;

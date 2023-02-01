@@ -10,7 +10,7 @@ import { TaskUpdateComponent } from '../task-update/task-update.component';
 export class IncompleteComponent {
   task_list: any;
   list_length: any;
-
+  tasks = JSON.parse(localStorage.getItem('task-details')!);
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -18,43 +18,40 @@ export class IncompleteComponent {
   }
 
   inCompleted_tasks() {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    let task = tasks.filter((item: any) => item.status == false);
+    let task = this.tasks.filter((item: any) => item.status == false);
     this.task_list = task;
     this.list_length = this.task_list.length;
   }
 
-  openDialog(id: any) {
-    const dialogRef = this.dialog.open(TaskUpdateComponent, {
+  open_dialog(id: any) {
+    const dialog_ref = this.dialog.open(TaskUpdateComponent, {
       data: { id: id },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialog_ref.afterClosed().subscribe((result) => {
       this.inCompleted_tasks();
     });
   }
 
-  remove(id: any) {
+  remove_todo(id: any) {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
-      let tasks = JSON.parse(localStorage.getItem('task-details')!);
-      let task = tasks.find((item: any) => item.id == id);
-      let index = tasks.indexOf(task);
-      let updated_list = tasks.splice(index, 1);
-      let list = JSON.stringify(tasks);
+      let task = this.tasks.find((item: any) => item.id == id);
+      let index = this.tasks.indexOf(task);
+      let updated_list = this.tasks.splice(index, 1);
+      let list = JSON.stringify(this.tasks);
       localStorage.setItem('task-details', list);
     }
     this.inCompleted_tasks();
   }
-  status(id: any) {
+  update_status(id: any) {
     if (localStorage.getItem('task-details') == null) {
       return;
     } else {
-      let tasks = JSON.parse(localStorage.getItem('task-details')!);
-      let task = tasks.find((item: any) => item.id == id);
+      let task = this.tasks.find((item: any) => item.id == id);
       task.status = true;
-      let list = JSON.stringify(tasks);
+      let list = JSON.stringify(this.tasks);
       localStorage.setItem('task-details', list);
     }
     this.inCompleted_tasks();

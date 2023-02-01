@@ -1,7 +1,9 @@
 <div class="container">
   <h1><b>Tasks</b></h1>
-  <form class="d-flex" role="search" (submit)="onSubmit()">
+  <form class="d-flex" role="search" (submit)="add_todo()">
     <input
+      required
+      minlength="100"
       style="border-radius: 30px; width: 50%; height: 50px"
       [(ngModel)]="task"
       name="task"
@@ -9,6 +11,7 @@
       placeholder="What's your today's task?"
     />
     <button
+      [disabled]="!task"
       class="btn btn-info btn-lg"
       type="submit"
       style="background-color: black; color: white; border-radius: 30px"
@@ -65,7 +68,7 @@
       <span style="float: right; font-size: 20px; color: rgb(255, 255, 255)">
         {{ task.status ? "Completed!" : "Incomplete" }}
         <input
-          (click)="status(task.id)"
+          (click)="update_status(task.id)"
           *ngIf="task.status == false"
           type="checkbox"
           style="
@@ -79,7 +82,7 @@
         <button
           mat-raised-button
           *ngIf="task.status == false"
-          (click)="openDialog(task.id)"
+          (click)="open_dialog(task.id)"
           style="
             background-color: rgb(47, 123, 170);
             color: rgb(146, 215, 210);
@@ -90,7 +93,7 @@
         ><button
           mat-raised-button
           *ngIf="task.status == false"
-          (click)="remove(task.id)"
+          (click)="remove_todo(task.id)"
           style="
             background-color: red;
             color: white;
@@ -102,7 +105,7 @@
         ><button
           mat-raised-button
           *ngIf="task.status == true"
-          (click)="remove(task.id)"
+          (click)="remove_todo(task.id)"
           style="
             background-color: red;
             color: white;
