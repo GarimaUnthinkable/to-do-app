@@ -47,7 +47,9 @@ export class AppComponent {
     this.router.navigate(['/task-update'], { queryParams: { id: id } });
     const dialogRef = this.dialog.open(TaskUpdateComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+    });
   }
 
   remove(id: any) {
@@ -57,6 +59,7 @@ export class AppComponent {
     let updated_list = tasks.splice(index, 1);
     let list = JSON.stringify(tasks);
     localStorage.setItem('task-details', list);
+    this.task_list = JSON.parse(localStorage.getItem('task-details')!);
   }
 
   inCompleted_tasks() {
