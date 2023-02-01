@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TaskUpdateComponent } from './task-update/task-update.component';
 
+export interface taskDetails {
+  id: any;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +24,7 @@ export class AppComponent {
     this.filter = false;
   }
 
-  constructor(public dialog: MatDialog, public router: Router) {}
+  constructor(public dialog: MatDialog) {}
 
   all_data() {
     if (localStorage.getItem('task-details') == null) {
@@ -42,6 +45,7 @@ export class AppComponent {
     let list = JSON.stringify(this.task_list);
     localStorage.setItem('task-details', list);
     this.task_list = JSON.parse(localStorage.getItem('task-details')!);
+    return this.task;
   }
 
   status(id: any) {
@@ -54,8 +58,9 @@ export class AppComponent {
   }
 
   openDialog(id: any) {
-    this.router.navigate(['/task-update'], { queryParams: { id: id } });
-    const dialogRef = this.dialog.open(TaskUpdateComponent);
+    const dialogRef = this.dialog.open(TaskUpdateComponent, {
+      data: { id: id },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       this.task_list = JSON.parse(localStorage.getItem('task-details')!);

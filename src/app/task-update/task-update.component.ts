@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { taskDetails } from '../app.component';
 
 @Component({
   selector: 'app-task-update',
@@ -9,7 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskUpdateComponent {
   task_name: any;
 
-  constructor(public route: ActivatedRoute, public router: Router) {}
+  constructor(
+    public dialogRef: MatDialogRef<TaskUpdateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: taskDetails
+  ) {}
 
   ngOnInit(): void {
     this.previous_name();
@@ -17,19 +22,15 @@ export class TaskUpdateComponent {
 
   previous_name() {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    this.route.queryParams.subscribe((res: any) => {
-      let task = tasks.find((item: any) => item.id == res.id);
-      this.task_name = task.name;
-    });
+    let task = tasks.find((item: any) => item.id == this.data.id);
+    this.task_name = task.name;
   }
 
   update() {
     let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    this.route.queryParams.subscribe((res: any) => {
-      let task = tasks.find((item: any) => item.id == res.id);
-      task.name = this.task_name;
-      let list = JSON.stringify(tasks);
-      localStorage.setItem('task-details', list);
-    });
+    let task = tasks.find((item: any) => item.id == this.data.id);
+    task.name = this.task_name;
+    let list = JSON.stringify(tasks);
+    localStorage.setItem('task-details', list);
   }
 }
