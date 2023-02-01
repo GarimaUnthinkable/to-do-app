@@ -45,7 +45,7 @@ export class AppComponent {
     let list = JSON.stringify(this.task_list);
     localStorage.setItem('task-details', list);
     this.task_list = JSON.parse(localStorage.getItem('task-details')!);
-    return this.task;
+    return (this.task = '');
   }
 
   status(id: any) {
