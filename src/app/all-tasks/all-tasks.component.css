@@ -1,0 +1,15 @@
+button:focus {
+  color: rgb(108, 96, 244);
+  background-color: rgb(130, 234, 194);
+  outline: none;
+}
+
+div {
+  margin-top: 30px;
+}
+
+.card {
+  height: 65px;
+  background-color: black;
+  border-color: aquamarine;
+}

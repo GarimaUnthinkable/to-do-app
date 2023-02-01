@@ -7,9 +7,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FormsModule } from '@angular/forms';
 import { TaskUpdateComponent } from './task-update/task-update.component';
+import { AllTasksComponent } from './all-tasks/all-tasks.component';
+import { CompletedComponent } from './completed/completed.component';
+import { IncompleteComponent } from './incomplete/incomplete.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskUpdateComponent],
+  declarations: [
+    AppComponent,
+    TaskUpdateComponent,
+    AllTasksComponent,
+    CompletedComponent,
+    IncompleteComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

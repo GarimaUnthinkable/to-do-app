@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskUpdateComponent } from './task-update/task-update.component';
+import { TaskUpdateComponent } from '../task-update/task-update.component';
 
 export interface taskDetails {
   id: any;
 }
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-all-tasks',
+  templateUrl: './all-tasks.component.html',
+  styleUrls: ['./all-tasks.component.css'],
 })
-export class AppComponent {
-  title = 'to-do-app';
+export class AllTasksComponent {
   task_list: any = [];
   task: any;
   task_details: any = {};
@@ -74,19 +74,5 @@ export class AppComponent {
     let list = JSON.stringify(tasks);
     localStorage.setItem('task-details', list);
     this.task_list = JSON.parse(localStorage.getItem('task-details')!);
-  }
-
-  inCompleted_tasks() {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    let task = tasks.filter((item: any) => item.status == false);
-    this.task_list = task;
-    return (this.filter = true);
-  }
-
-  completed_tasks() {
-    let tasks = JSON.parse(localStorage.getItem('task-details')!);
-    let task = tasks.filter((item: any) => item.status == true);
-    this.task_list = task;
-    return (this.filter = true);
   }
 }
