@@ -6,7 +6,7 @@ import { IncompleteComponent } from './all modules/incomplete/incomplete.compone
 import { NewTaskComponent } from './all modules/new-task/new-task.component';
 
 const routes: Routes = [
-  { path: '', component: AllTasksComponent },
+  { path: '', redirectTo: 'all-tasks', pathMatch: 'full' },
   { path: 'all-tasks', component: AllTasksComponent },
   { path: 'completed', component: CompletedComponent },
   { path: 'incomplete', component: IncompleteComponent },
