@@ -13,7 +13,7 @@
       </button>
     </div>
   </div>
-  <div *ngIf="todo_task_list_length == 0">
+  <div *ngIf="todo_task_list.length == 0">
     <h2>No completed task!</h2>
   </div>
   <div class="card" *ngFor="let task of todo_task_list; let i = index">

@@ -10,8 +10,8 @@ import { TaskUpdateComponent } from '../task-update/task-update.component';
 })
 export class IncompleteComponent {
   todo_task_list: any;
-  todo_task_list_length: any;
   all_todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -21,7 +21,6 @@ export class IncompleteComponent {
   incompleted_tasks() {
     let task = this.all_todo_tasks.filter((item: any) => item.status == false);
     this.todo_task_list = task;
-    this.todo_task_list_length = this.todo_task_list.length;
   }
 
   open_dialog(id: any) {
@@ -34,19 +33,18 @@ export class IncompleteComponent {
     });
   }
 
-  store_updated_todo() {
-    let list = JSON.stringify(this.all_todo_tasks);
-    localStorage.setItem('task-details', list);
+  update_todo_list(list: any) {
+    localStorage.setItem('task-details', JSON.stringify(list));
   }
 
   remove_todo(id: any) {
     this.incompleted_tasks();
     let todo_task = this.todo_task_list.find((item: any) => item.id == id);
     let index = this.todo_task_list.indexOf(todo_task);
-    let updated_list = this.all_todo_tasks.splice(index + 1, 1);
+    this.all_todo_tasks.splice(index, 1);
     this.incompleted_tasks();
-    let list = JSON.stringify(this.all_todo_tasks);
-    localStorage.setItem('task-details', list);
+    console.log(this.all_todo_tasks);
+    this.update_todo_list(this.all_todo_tasks);
   }
 
   update_status(id: any) {
@@ -54,7 +52,7 @@ export class IncompleteComponent {
     let task = this.todo_task_list.find((item: any) => item.id == id);
     task.status = true;
     this.incompleted_tasks();
-    let list = JSON.stringify(this.all_todo_tasks);
-    localStorage.setItem('task-details', list);
+    console.log(this.all_todo_tasks);
+    this.update_todo_list(this.all_todo_tasks);
   }
 }

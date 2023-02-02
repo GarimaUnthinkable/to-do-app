@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class CompletedComponent {
   all_todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
   todo_task_list: any;
-  todo_task_list_length: any;
 
   ngOnInit(): void {
     this.completed_tasks();
@@ -19,14 +18,13 @@ export class CompletedComponent {
       (item: any) => item.status == true
     );
     this.todo_task_list = todo_task;
-    this.todo_task_list_length = this.todo_task_list.length;
   }
 
   remove_todo(id: any) {
     this.completed_tasks();
     let todo_task = this.todo_task_list.find((item: any) => item.id == id);
     let index = this.todo_task_list.indexOf(todo_task);
-    let updated_list = this.all_todo_tasks.splice(index + 1, 1);
+    this.all_todo_tasks.splice(index, 1);
     this.completed_tasks();
     let list = JSON.stringify(this.all_todo_tasks);
     localStorage.setItem('task-details', list);
