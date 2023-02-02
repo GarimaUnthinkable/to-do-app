@@ -1,3 +1,4 @@
+import { ListKeyManager } from '@angular/cdk/a11y';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskUpdateComponent } from '../task-update/task-update.component';
@@ -10,7 +11,7 @@ import { TaskUpdateComponent } from '../task-update/task-update.component';
 export class IncompleteComponent {
   todo_task_list: any;
   todo_task_list_length: any;
-  todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
+  all_todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -18,7 +19,7 @@ export class IncompleteComponent {
   }
 
   incompleted_tasks() {
-    let task = this.todo_tasks.filter((item: any) => item.status == false);
+    let task = this.all_todo_tasks.filter((item: any) => item.status == false);
     this.todo_task_list = task;
     this.todo_task_list_length = this.todo_task_list.length;
   }
@@ -34,30 +35,26 @@ export class IncompleteComponent {
   }
 
   store_updated_todo() {
-    let list = JSON.stringify(this.todo_task_list);
+    let list = JSON.stringify(this.all_todo_tasks);
     localStorage.setItem('task-details', list);
   }
 
   remove_todo(id: any) {
-    if (localStorage.getItem('task-details') == null) {
-      return;
-    } else {
-      let task = this.todo_tasks.find((item: any) => item.id == id);
-      let index = this.todo_tasks.indexOf(task);
-      let updated_list = this.todo_tasks.splice(index, 1);
-      this.store_updated_todo();
-    }
     this.incompleted_tasks();
+    let todo_task = this.todo_task_list.find((item: any) => item.id == id);
+    let index = this.todo_task_list.indexOf(todo_task);
+    let updated_list = this.all_todo_tasks.splice(index + 1, 1);
+    this.incompleted_tasks();
+    let list = JSON.stringify(this.all_todo_tasks);
+    localStorage.setItem('task-details', list);
   }
 
   update_status(id: any) {
-    if (localStorage.getItem('task-details') == null) {
-      return;
-    } else {
-      let task = this.todo_tasks.find((item: any) => item.id == id);
-      task.status = true;
-      this.store_updated_todo();
-    }
     this.incompleted_tasks();
+    let task = this.todo_task_list.find((item: any) => item.id == id);
+    task.status = true;
+    this.incompleted_tasks();
+    let list = JSON.stringify(this.all_todo_tasks);
+    localStorage.setItem('task-details', list);
   }
 }
