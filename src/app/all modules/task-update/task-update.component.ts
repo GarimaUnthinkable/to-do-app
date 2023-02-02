@@ -35,4 +35,10 @@ export class TaskUpdateComponent {
     let list = JSON.stringify(this.todo_tasks);
     localStorage.setItem('task-details', list);
   }
+
+  prevent_space(event: any) {
+    if (event.target.selectionStart === 0 && event.code === 'Space') {
+      event.preventDefault();
+    }
+  }
 }

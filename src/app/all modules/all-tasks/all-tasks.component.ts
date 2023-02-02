@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/all modules/other files/data.service';
-import { TaskUpdateComponent } from '../task-update/task-update.component';
 
 export interface taskDetails {
   id: any;
