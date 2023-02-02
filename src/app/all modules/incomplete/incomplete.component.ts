@@ -14,10 +14,10 @@ export class IncompleteComponent {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.inCompleted_tasks();
+    this.incompleted_tasks();
   }
 
-  inCompleted_tasks() {
+  incompleted_tasks() {
     let task = this.todo_tasks.filter((item: any) => item.status == false);
     this.todo_task_list = task;
     this.todo_task_list_length = this.todo_task_list.length;
@@ -29,7 +29,7 @@ export class IncompleteComponent {
     });
 
     dialog_ref.afterClosed().subscribe((result) => {
-      this.inCompleted_tasks();
+      this.incompleted_tasks();
     });
   }
 
@@ -47,7 +47,7 @@ export class IncompleteComponent {
       let updated_list = this.todo_tasks.splice(index, 1);
       this.store_updated_todo();
     }
-    this.inCompleted_tasks();
+    this.incompleted_tasks();
   }
 
   update_status(id: any) {
@@ -58,6 +58,6 @@ export class IncompleteComponent {
       task.status = true;
       this.store_updated_todo();
     }
-    this.inCompleted_tasks();
+    this.incompleted_tasks();
   }
 }
