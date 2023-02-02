@@ -1,6 +1,19 @@
 <div class="container" style="margin-top: 30px">
-  <h2><b>Completed tasks</b></h2>
   <div *ngIf="todo_task_list.length == 0">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2><b>Completed tasks</b></h2>
+      </div>
+      <div class="col-sm-6">
+        <button
+          mat-raised-button
+          routerLink="/incomplete"
+          style="color: white; background-color: rgb(86, 86, 244)"
+        >
+          Incomplete tasks
+        </button>
+      </div>
+    </div>
     <h2>No completed task!</h2>
   </div>
   <div class="card" *ngFor="let task of todo_task_list; let i = index">
