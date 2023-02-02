@@ -14,7 +14,6 @@ export interface taskDetails {
 export class AllTasksComponent {
   todo_task_list: any = [];
   todo_task: any;
-  todo_task_details: any = {};
 
   ngOnInit(): void {
     this.fetch_all_todo();
@@ -32,20 +31,6 @@ export class AllTasksComponent {
 
   update_todo_list(list: any) {
     localStorage.setItem('task-details', JSON.stringify(list));
-  }
-
-  add_todo() {
-    let todo_task_id = Math.floor(Math.random() * 1000);
-    this.todo_task_details = {
-      name: this.todo_task,
-      status: false,
-      id: todo_task_id,
-    };
-    this.todo_task_list.push(this.todo_task_details);
-    console.log(this.todo_task_list);
-    this.update_todo_list(this.todo_task_list);
-    this.todo_task = '';
-    this.fetch_all_todo();
   }
 
   update_status(id: any) {

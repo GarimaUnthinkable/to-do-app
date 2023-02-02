@@ -10,6 +10,7 @@ import { TaskUpdateComponent } from './all modules/task-update/task-update.compo
 import { AllTasksComponent } from './all modules/all-tasks/all-tasks.component';
 import { CompletedComponent } from './all modules/completed/completed.component';
 import { IncompleteComponent } from './all modules/incomplete/incomplete.component';
+import { NewTaskComponent } from './all modules/new-task/new-task.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { IncompleteComponent } from './all modules/incomplete/incomplete.compone
     AllTasksComponent,
     CompletedComponent,
     IncompleteComponent,
+    NewTaskComponent,
   ],
   imports: [
     BrowserModule,

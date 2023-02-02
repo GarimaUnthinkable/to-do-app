@@ -1,27 +1,5 @@
 <div class="container">
-  <h1><b>Tasks</b></h1>
-  <form class="d-flex" role="search" (submit)="add_todo()">
-    <input
-      required
-      minlength="100"
-      style="border-radius: 30px; width: 50%; height: 50px"
-      [(ngModel)]="todo_task"
-      name="task"
-      class="form-control me-2"
-      placeholder="What's your today's task?"
-    />
-    <button
-      [disabled]="!todo_task"
-      class="btn btn-info btn-lg"
-      type="submit"
-      style="background-color: black; color: white; border-radius: 30px"
-    >
-      Add task
-    </button>
-  </form>
-</div>
-<div class="container">
-  <h2><b>All tasks</b></h2>
+  <h2><b>Your tasks</b></h2>
   <div class="card-border-light">
     <div class="card-body row">
       <div class="col-sm-2" style="margin-top: 5px">

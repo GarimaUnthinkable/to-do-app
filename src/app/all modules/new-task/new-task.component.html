@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 style="margin-top: 20px"><b>Add your new task here</b></h1>
+  <div>
+    <form class="d-flex" role="search" (submit)="add_todo()">
+      <input
+        required
+        minlength="15"
+        style="border-radius: 30px; width: 100%; height: 50px"
+        [(ngModel)]="todo_title"
+        name="todo_title"
+        class="form-control me-2"
+        placeholder="Give a title to your task"
+      />
+      <input
+        required
+        minlength="100"
+        style="border-radius: 30px; width: 100%; height: 50px"
+        [(ngModel)]="todo_task"
+        name="task"
+        class="form-control me-2"
+        placeholder="What's your today's task?"
+      />
+      <button
+        routerLink="/all-tasks"
+        [disabled]="!todo_task"
+        class="btn btn-info btn-lg"
+        type="submit"
+        style="
+          background-color: black;
+          color: white;
+          border-radius: 30px;
+          width: 25%;
+        "
+        (click)="add_todo()"
+      >
+        Add task
+      </button>
+      <button
+        routerLink="/all-tasks"
+        class="btn btn-info btn-lg"
+        type="submit"
+        style="
+          background-color: rgb(185, 62, 62);
+          color: white;
+          border-radius: 30px;
+          width: 25%;
+        "
+      >
+        Go back
+      </button>
+    </form>
+  </div>
+</div>
