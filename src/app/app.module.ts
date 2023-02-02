@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material.module';
-import { FormsModule } from '@angular/forms';
+import { AngularMaterialModule } from './all modules/other files/angular-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskUpdateComponent } from './all modules/task-update/task-update.component';
 import { AllTasksComponent } from './all modules/all-tasks/all-tasks.component';
 import { CompletedComponent } from './all modules/completed/completed.component';
@@ -27,6 +27,7 @@ import { NewTaskComponent } from './all modules/new-task/new-task.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

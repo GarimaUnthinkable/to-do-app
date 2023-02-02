@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class NewTaskComponent {
   todo_task_list: any = [];
-  todo_task: any;
-  todo_title: any;
+  todo_task: string = '';
+  todo_title: string = '';
   todo_task_details: any = {};
 
   add_todo() {
@@ -24,5 +24,11 @@ export class NewTaskComponent {
     let list = JSON.stringify(this.todo_task_list);
     localStorage.setItem('task-details', list);
     this.todo_task = '';
+  }
+
+  prevent_space(event: any) {
+    if (event.target.selectionStart === 0 && event.code === 'Space') {
+      event.preventDefault();
+    }
   }
 }

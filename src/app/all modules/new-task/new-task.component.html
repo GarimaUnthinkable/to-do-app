@@ -3,6 +3,7 @@
   <div>
     <form class="d-flex" role="search" (submit)="add_todo()">
       <input
+        (keydown)="prevent_space($event)"
         required
         minlength="15"
         style="border-radius: 30px; width: 100%; height: 50px"
@@ -12,6 +13,7 @@
         placeholder="Give a title to your task"
       />
       <input
+        (keydown)="prevent_space($event)"
         required
         minlength="100"
         style="border-radius: 30px; width: 100%; height: 50px"
@@ -22,7 +24,7 @@
       />
       <button
         routerLink="/all-tasks"
-        [disabled]="!todo_task || !todo_title"
+        [disabled]="todo_task.length == 0 || todo_title.length == 0"
         class="btn btn-info btn-lg"
         type="submit"
         style="
