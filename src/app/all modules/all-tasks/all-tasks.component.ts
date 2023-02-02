@@ -4,7 +4,7 @@ import { DataService } from 'src/app/all modules/other files/data.service';
 import { TaskUpdateComponent } from '../task-update/task-update.component';
 
 export interface taskDetails {
-  id: any;
+  data: any;
 }
 
 @Component({
