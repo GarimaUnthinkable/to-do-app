@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { taskDetails } from '../../app.component';
+import { DataService } from '../other files/data.service';
 
 @Component({
   selector: 'app-task-update',
@@ -13,7 +14,8 @@ export class TaskUpdateComponent {
 
   constructor(
     public dialogRef: MatDialogRef<TaskUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: taskDetails
+    @Inject(MAT_DIALOG_DATA) public data: taskDetails,
+    public data_service: DataService
   ) {}
 
   todo_tasks = JSON.parse(localStorage.getItem('task-details')!);
@@ -37,8 +39,6 @@ export class TaskUpdateComponent {
   }
 
   prevent_space(event: any) {
-    if (event.target.selectionStart === 0 && event.code === 'Space') {
-      event.preventDefault();
-    }
+    this.data_service.prevent_empty_string(event);
   }
 }

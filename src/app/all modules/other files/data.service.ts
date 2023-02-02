@@ -20,4 +20,10 @@ export class DataService {
   update_todo_list(list: any) {
     localStorage.setItem('task-details', JSON.stringify(list));
   }
+
+  prevent_empty_string(event: any) {
+    if (event.target.selectionStart === 0 && event.code === 'Space') {
+      event.preventDefault();
+    }
+  }
 }
