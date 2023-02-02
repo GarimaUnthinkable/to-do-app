@@ -6,7 +6,8 @@
   <div class="card" *ngFor="let task of todo_task_list; let i = index">
     <p class="card-body" style="color: white">
       <b>{{ i + 1 }}.</b>
-      <span style="font-size: 18px"> {{ task.name }}</span>
+      <span style="font-size: 18px"> {{ task.title }}</span
+      ><br />{{ task.name }}
       <span
         style="
           float: right;
@@ -35,7 +36,7 @@
           style="
             background-color: rgb(47, 123, 170);
             color: rgb(146, 215, 210);
-            margin-bottom: 15px;
+            margin-bottom: 40px;
           "
         >
           Edit
@@ -47,7 +48,7 @@
           style="
             background-color: red;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
             margin-left: 10px;
           "
         >
