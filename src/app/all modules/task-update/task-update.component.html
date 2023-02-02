@@ -1,17 +1,26 @@
 <h2 mat-dialog-title style="width: 200px; margin-left: 60px">Task update</h2>
 <mat-dialog-content class="mat-typography">
   <input
-    [(ngModel)]="task_name"
-    name="task"
+    [(ngModel)]="task_title"
+    name="task_title"
     class="form-control me-2"
     type="text"
-    placeholder="Your task"
+    placeholder="Your task title"
+    style="border-radius: 30px; width: 85%; height: 45px; margin-left: 20px"
+  /><br />
+  <input
+    [(ngModel)]="task_name"
+    name="task_name"
+    class="form-control me-2"
+    type="text"
+    placeholder="Your task name"
     style="border-radius: 30px; width: 85%; height: 45px; margin-left: 20px"
   />
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button
+    [disabled]="!task_name || !task_title"
     ng-show="task.$dirty"
     mat-raised-button
     [mat-dialog-close]="true"

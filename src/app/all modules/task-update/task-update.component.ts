@@ -9,6 +9,7 @@ import { taskDetails } from '../../app.component';
 })
 export class TaskUpdateComponent {
   task_name: any;
+  task_title: any;
 
   constructor(
     public dialogRef: MatDialogRef<TaskUpdateComponent>,
@@ -24,11 +25,13 @@ export class TaskUpdateComponent {
   fetch_previous_name() {
     let task = this.todo_tasks.find((item: any) => item.id == this.data.id);
     this.task_name = task.name;
+    this.task_title = task.title;
   }
 
   update_todo() {
     let task = this.todo_tasks.find((item: any) => item.id == this.data.id);
     task.name = this.task_name;
+    task.title = this.task_title;
     let list = JSON.stringify(this.todo_tasks);
     localStorage.setItem('task-details', list);
   }

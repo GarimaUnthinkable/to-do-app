@@ -38,63 +38,57 @@
   <div *ngIf="todo_task_list.length == 0">
     <h2>No tasks created.</h2>
   </div>
-  <div class="card" *ngFor="let task of todo_task_list; let i = index">
-    <p class="card-body" style="color: white">
-      <b>{{ i + 1 }}.</b>
-      <span style="font-size: 18px"> {{ task.title }}</span
-      ><br />{{ task.name }}
-
-      <span style="float: right; font-size: 20px; color: rgb(255, 255, 255)">
-        {{ task.status ? "Completed!" : "Incomplete" }}
-        <input
-          (click)="update_status(task.id)"
-          *ngIf="task.status == false"
-          type="checkbox"
+  <div class="row">
+    <div
+      class="card col-sm-2"
+      style="
+        margin: 10px;
+        width: 18rem;
+        height: 150px;
+        border: -5px;
+        border-color: aquamarine;
+      "
+      *ngFor="let task of todo_task_list"
+    >
+      <div class="card-body">
+        <span style="float: right; font-size: 15px; margin-top: -30px">
+          <input
+            (click)="update_status(task.id)"
+            *ngIf="task.status == false"
+            type="checkbox"
+            style="margin-right: 5px; border: 1px; width: 15px; height: 15px"
+          />
+          {{ task.status ? "Completed!" : "Incomplete" }}</span
+        >
+        <h5 class="card-title" style="font-size: 30px; margin-top: -20px">
+          {{ task.title }}
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted" style="font-size: 20px">
+          {{ task.name }}
+        </h6>
+        <mat-icon
           style="
-            margin-bottom: 10px;
-            margin-right: 15px;
-            border: 1px;
-            width: 20px;
-            height: 20px;
+            float: right;
+            margin-top: 30px;
+            background-color: rgb(248, 17, 17);
+            border-radius: 5px;
           "
-        />
-        <button
-          mat-raised-button
+          (click)="remove_todo(task.id)"
+          >delete</mat-icon
+        >
+        <mat-icon
           *ngIf="task.status == false"
+          style="
+            float: right;
+            margin-top: 30px;
+            margin-right: 10px;
+            background-color: rgb(17, 248, 198);
+            border-radius: 5px;
+          "
           (click)="open_dialog(task.id)"
-          style="
-            background-color: rgb(47, 123, 170);
-            color: rgb(146, 215, 210);
-            margin-bottom: 40px;
-          "
+          >edit</mat-icon
         >
-          Edit</button
-        ><button
-          mat-raised-button
-          *ngIf="task.status == false"
-          (click)="remove_todo(task.id)"
-          style="
-            background-color: red;
-            color: white;
-            margin-bottom: 40px;
-            margin-left: 5px;
-          "
-        >
-          Delete</button
-        ><button
-          mat-raised-button
-          *ngIf="task.status == true"
-          (click)="remove_todo(task.id)"
-          style="
-            background-color: red;
-            color: white;
-            margin-bottom: 15px;
-            margin-left: 5px;
-          "
-        >
-          Remove
-        </button></span
-      >
-    </p>
+      </div>
+    </div>
   </div>
 </div>
