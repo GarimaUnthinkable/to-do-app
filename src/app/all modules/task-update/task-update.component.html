@@ -1,6 +1,7 @@
 <h2 mat-dialog-title style="width: 200px; margin-left: 60px">Task update</h2>
 <mat-dialog-content class="mat-typography">
   <input
+    maxlength="10"
     (keydown)="prevent_space($event)"
     [(ngModel)]="task_title"
     name="task_title"
@@ -10,6 +11,7 @@
     style="border-radius: 30px; width: 85%; height: 45px; margin-left: 20px"
   /><br />
   <input
+    maxlength="50"
     (keydown)="prevent_space($event)"
     [(ngModel)]="task_name"
     name="task_name"

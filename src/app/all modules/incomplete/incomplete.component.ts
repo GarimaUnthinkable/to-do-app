@@ -35,7 +35,7 @@ export class IncompleteComponent {
       (item: any) => item.status == false
     );
     let todo_task = task_list.find((item: any) => item.id == id);
-    let index = task_list.indexOf(todo_task);
+    let index = this.data.get_localstorage_data.indexOf(todo_task);
     this.data.get_localstorage_data.splice(index, 1);
     this.incompleted_tasks();
     this.data.update_todo_list(this.data.get_localstorage_data);
